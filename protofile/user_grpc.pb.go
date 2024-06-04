@@ -19,14 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	HelloWorldService_SayHello_FullMethodName = "/HelloWorldService/SayHello"
+	HelloWorldService_Sayhello_FullMethodName = "/HelloWorldService/sayhello"
+	HelloWorldService_Sendhi_FullMethodName   = "/HelloWorldService/sendhi"
 )
 
 // HelloWorldServiceClient is the client API for HelloWorldService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HelloWorldServiceClient interface {
-	SayHello(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error)
+	Sayhello(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error)
+	Sendhi(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HelloWorldResponse, error)
 }
 
 type helloWorldServiceClient struct {
@@ -37,9 +39,18 @@ func NewHelloWorldServiceClient(cc grpc.ClientConnInterface) HelloWorldServiceCl
 	return &helloWorldServiceClient{cc}
 }
 
-func (c *helloWorldServiceClient) SayHello(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error) {
+func (c *helloWorldServiceClient) Sayhello(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error) {
 	out := new(HelloWorldResponse)
-	err := c.cc.Invoke(ctx, HelloWorldService_SayHello_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, HelloWorldService_Sayhello_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *helloWorldServiceClient) Sendhi(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HelloWorldResponse, error) {
+	out := new(HelloWorldResponse)
+	err := c.cc.Invoke(ctx, HelloWorldService_Sendhi_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +61,8 @@ func (c *helloWorldServiceClient) SayHello(ctx context.Context, in *HelloWorldRe
 // All implementations must embed UnimplementedHelloWorldServiceServer
 // for forward compatibility
 type HelloWorldServiceServer interface {
-	SayHello(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error)
+	Sayhello(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error)
+	Sendhi(context.Context, *Empty) (*HelloWorldResponse, error)
 	mustEmbedUnimplementedHelloWorldServiceServer()
 }
 
@@ -58,8 +70,11 @@ type HelloWorldServiceServer interface {
 type UnimplementedHelloWorldServiceServer struct {
 }
 
-func (UnimplementedHelloWorldServiceServer) SayHello(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+func (UnimplementedHelloWorldServiceServer) Sayhello(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sayhello not implemented")
+}
+func (UnimplementedHelloWorldServiceServer) Sendhi(context.Context, *Empty) (*HelloWorldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sendhi not implemented")
 }
 func (UnimplementedHelloWorldServiceServer) mustEmbedUnimplementedHelloWorldServiceServer() {}
 
@@ -74,20 +89,38 @@ func RegisterHelloWorldServiceServer(s grpc.ServiceRegistrar, srv HelloWorldServ
 	s.RegisterService(&HelloWorldService_ServiceDesc, srv)
 }
 
-func _HelloWorldService_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _HelloWorldService_Sayhello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelloWorldRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HelloWorldServiceServer).SayHello(ctx, in)
+		return srv.(HelloWorldServiceServer).Sayhello(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HelloWorldService_SayHello_FullMethodName,
+		FullMethod: HelloWorldService_Sayhello_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelloWorldServiceServer).SayHello(ctx, req.(*HelloWorldRequest))
+		return srv.(HelloWorldServiceServer).Sayhello(ctx, req.(*HelloWorldRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HelloWorldService_Sendhi_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloWorldServiceServer).Sendhi(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HelloWorldService_Sendhi_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloWorldServiceServer).Sendhi(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +133,12 @@ var HelloWorldService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*HelloWorldServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello",
-			Handler:    _HelloWorldService_SayHello_Handler,
+			MethodName: "sayhello",
+			Handler:    _HelloWorldService_Sayhello_Handler,
+		},
+		{
+			MethodName: "sendhi",
+			Handler:    _HelloWorldService_Sendhi_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

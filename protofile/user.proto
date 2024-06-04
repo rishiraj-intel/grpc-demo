@@ -3,14 +3,17 @@ syntax = "proto3";
 option go_package = "github.com/rishiraj-intel/grpc-demo";
 
 service HelloWorldService {
-  rpc SayHello (HelloWorldRequest) returns (HelloWorldResponse);
+  rpc sayhello(HelloWorldRequest) returns (HelloWorldResponse) {}
+  rpc sendhi(Empty)  returns (HelloWorldResponse);
 }
 
 message HelloWorldRequest {
-  string message = 1;
+  string message=1;
 }
 
 message HelloWorldResponse {
   string message = 1;
 }
 
+message Empty{
+}
