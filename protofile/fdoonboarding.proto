@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/rishiraj-intel/grpc-demo";
+
+service NodeArtifactServiceNB {
+  rpc FdoOnboardingTo2Req(FdoOnboardingReq) returns (FdoOnboardingResponse) {}
+}
+
+message FdoOnboardingReq {
+  string request = 1;
+}
+
+message FdoOnboardingResponse {
+  string Response = 1;
+}
