@@ -19,13 +19,31 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
+	NodeArtifactServiceNB_CreateArtifacts_FullMethodName     = "/NodeArtifactServiceNB/CreateArtifacts"
+	NodeArtifactServiceNB_GetArtifacts_FullMethodName        = "/NodeArtifactServiceNB/GetArtifacts"
+	NodeArtifactServiceNB_UpdateArtifactsById_FullMethodName = "/NodeArtifactServiceNB/UpdateArtifactsById"
+	NodeArtifactServiceNB_DeleteArtifacts_FullMethodName     = "/NodeArtifactServiceNB/DeleteArtifacts"
+	NodeArtifactServiceNB_CreateNodes_FullMethodName         = "/NodeArtifactServiceNB/CreateNodes"
+	NodeArtifactServiceNB_GetNodes_FullMethodName            = "/NodeArtifactServiceNB/GetNodes"
+	NodeArtifactServiceNB_UpdateNodes_FullMethodName         = "/NodeArtifactServiceNB/UpdateNodes"
+	NodeArtifactServiceNB_DeleteNodes_FullMethodName         = "/NodeArtifactServiceNB/DeleteNodes"
 	NodeArtifactServiceNB_FdoOnboardingTo2Req_FullMethodName = "/NodeArtifactServiceNB/FdoOnboardingTo2Req"
 )
 
 // NodeArtifactServiceNBClient is the client API for NodeArtifactServiceNB service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Artifact & Node Endpoints towards Inventory Manager
 type NodeArtifactServiceNBClient interface {
+	CreateArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error)
+	GetArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error)
+	UpdateArtifactsById(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error)
+	DeleteArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error)
+	CreateNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error)
+	GetNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error)
+	UpdateNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error)
+	DeleteNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error)
 	FdoOnboardingTo2Req(ctx context.Context, in *FdoOnboardingReq, opts ...grpc.CallOption) (*FdoOnboardingResponse, error)
 }
 
@@ -35,6 +53,86 @@ type nodeArtifactServiceNBClient struct {
 
 func NewNodeArtifactServiceNBClient(cc grpc.ClientConnInterface) NodeArtifactServiceNBClient {
 	return &nodeArtifactServiceNBClient{cc}
+}
+
+func (c *nodeArtifactServiceNBClient) CreateArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArtifactResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_CreateArtifacts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) GetArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArtifactResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_GetArtifacts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) UpdateArtifactsById(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArtifactResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_UpdateArtifactsById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) DeleteArtifacts(ctx context.Context, in *ArtifactRequest, opts ...grpc.CallOption) (*ArtifactResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArtifactResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_DeleteArtifacts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) CreateNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NodeResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_CreateNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) GetNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NodeResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_GetNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) UpdateNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NodeResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_UpdateNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeArtifactServiceNBClient) DeleteNodes(ctx context.Context, in *NodeRequest, opts ...grpc.CallOption) (*NodeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NodeResponse)
+	err := c.cc.Invoke(ctx, NodeArtifactServiceNB_DeleteNodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *nodeArtifactServiceNBClient) FdoOnboardingTo2Req(ctx context.Context, in *FdoOnboardingReq, opts ...grpc.CallOption) (*FdoOnboardingResponse, error) {
@@ -50,7 +148,17 @@ func (c *nodeArtifactServiceNBClient) FdoOnboardingTo2Req(ctx context.Context, i
 // NodeArtifactServiceNBServer is the server API for NodeArtifactServiceNB service.
 // All implementations must embed UnimplementedNodeArtifactServiceNBServer
 // for forward compatibility
+//
+// Artifact & Node Endpoints towards Inventory Manager
 type NodeArtifactServiceNBServer interface {
+	CreateArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error)
+	GetArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error)
+	UpdateArtifactsById(context.Context, *ArtifactRequest) (*ArtifactResponse, error)
+	DeleteArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error)
+	CreateNodes(context.Context, *NodeRequest) (*NodeResponse, error)
+	GetNodes(context.Context, *NodeRequest) (*NodeResponse, error)
+	UpdateNodes(context.Context, *NodeRequest) (*NodeResponse, error)
+	DeleteNodes(context.Context, *NodeRequest) (*NodeResponse, error)
 	FdoOnboardingTo2Req(context.Context, *FdoOnboardingReq) (*FdoOnboardingResponse, error)
 	mustEmbedUnimplementedNodeArtifactServiceNBServer()
 }
@@ -59,6 +167,30 @@ type NodeArtifactServiceNBServer interface {
 type UnimplementedNodeArtifactServiceNBServer struct {
 }
 
+func (UnimplementedNodeArtifactServiceNBServer) CreateArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateArtifacts not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) GetArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetArtifacts not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) UpdateArtifactsById(context.Context, *ArtifactRequest) (*ArtifactResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateArtifactsById not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) DeleteArtifacts(context.Context, *ArtifactRequest) (*ArtifactResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteArtifacts not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) CreateNodes(context.Context, *NodeRequest) (*NodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNodes not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) GetNodes(context.Context, *NodeRequest) (*NodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNodes not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) UpdateNodes(context.Context, *NodeRequest) (*NodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodes not implemented")
+}
+func (UnimplementedNodeArtifactServiceNBServer) DeleteNodes(context.Context, *NodeRequest) (*NodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteNodes not implemented")
+}
 func (UnimplementedNodeArtifactServiceNBServer) FdoOnboardingTo2Req(context.Context, *FdoOnboardingReq) (*FdoOnboardingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FdoOnboardingTo2Req not implemented")
 }
@@ -73,6 +205,150 @@ type UnsafeNodeArtifactServiceNBServer interface {
 
 func RegisterNodeArtifactServiceNBServer(s grpc.ServiceRegistrar, srv NodeArtifactServiceNBServer) {
 	s.RegisterService(&NodeArtifactServiceNB_ServiceDesc, srv)
+}
+
+func _NodeArtifactServiceNB_CreateArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).CreateArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_CreateArtifacts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).CreateArtifacts(ctx, req.(*ArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_GetArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).GetArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_GetArtifacts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).GetArtifacts(ctx, req.(*ArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_UpdateArtifactsById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).UpdateArtifactsById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_UpdateArtifactsById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).UpdateArtifactsById(ctx, req.(*ArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_DeleteArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).DeleteArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_DeleteArtifacts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).DeleteArtifacts(ctx, req.(*ArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_CreateNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).CreateNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_CreateNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).CreateNodes(ctx, req.(*NodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_GetNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).GetNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_GetNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).GetNodes(ctx, req.(*NodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_UpdateNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).UpdateNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_UpdateNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).UpdateNodes(ctx, req.(*NodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeArtifactServiceNB_DeleteNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeArtifactServiceNBServer).DeleteNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeArtifactServiceNB_DeleteNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeArtifactServiceNBServer).DeleteNodes(ctx, req.(*NodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _NodeArtifactServiceNB_FdoOnboardingTo2Req_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -100,6 +376,38 @@ var NodeArtifactServiceNB_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "NodeArtifactServiceNB",
 	HandlerType: (*NodeArtifactServiceNBServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateArtifacts",
+			Handler:    _NodeArtifactServiceNB_CreateArtifacts_Handler,
+		},
+		{
+			MethodName: "GetArtifacts",
+			Handler:    _NodeArtifactServiceNB_GetArtifacts_Handler,
+		},
+		{
+			MethodName: "UpdateArtifactsById",
+			Handler:    _NodeArtifactServiceNB_UpdateArtifactsById_Handler,
+		},
+		{
+			MethodName: "DeleteArtifacts",
+			Handler:    _NodeArtifactServiceNB_DeleteArtifacts_Handler,
+		},
+		{
+			MethodName: "CreateNodes",
+			Handler:    _NodeArtifactServiceNB_CreateNodes_Handler,
+		},
+		{
+			MethodName: "GetNodes",
+			Handler:    _NodeArtifactServiceNB_GetNodes_Handler,
+		},
+		{
+			MethodName: "UpdateNodes",
+			Handler:    _NodeArtifactServiceNB_UpdateNodes_Handler,
+		},
+		{
+			MethodName: "DeleteNodes",
+			Handler:    _NodeArtifactServiceNB_DeleteNodes_Handler,
+		},
 		{
 			MethodName: "FdoOnboardingTo2Req",
 			Handler:    _NodeArtifactServiceNB_FdoOnboardingTo2Req_Handler,
