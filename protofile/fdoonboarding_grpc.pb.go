@@ -4,7 +4,7 @@
 // - protoc             v3.6.1
 // source: fdoonboarding.proto
 
-package grpc_demo
+package onboardingmgr
 
 import (
 	context "context"
@@ -19,15 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	NodeArtifactServiceNB_CreateArtifacts_FullMethodName     = "/NodeArtifactServiceNB/CreateArtifacts"
-	NodeArtifactServiceNB_GetArtifacts_FullMethodName        = "/NodeArtifactServiceNB/GetArtifacts"
-	NodeArtifactServiceNB_UpdateArtifactsById_FullMethodName = "/NodeArtifactServiceNB/UpdateArtifactsById"
-	NodeArtifactServiceNB_DeleteArtifacts_FullMethodName     = "/NodeArtifactServiceNB/DeleteArtifacts"
-	NodeArtifactServiceNB_CreateNodes_FullMethodName         = "/NodeArtifactServiceNB/CreateNodes"
-	NodeArtifactServiceNB_GetNodes_FullMethodName            = "/NodeArtifactServiceNB/GetNodes"
-	NodeArtifactServiceNB_UpdateNodes_FullMethodName         = "/NodeArtifactServiceNB/UpdateNodes"
-	NodeArtifactServiceNB_DeleteNodes_FullMethodName         = "/NodeArtifactServiceNB/DeleteNodes"
-	NodeArtifactServiceNB_FdoOnboardingTo2Req_FullMethodName = "/NodeArtifactServiceNB/FdoOnboardingTo2Req"
+	NodeArtifactServiceNB_CreateArtifacts_FullMethodName     = "/onboardingmgr.NodeArtifactServiceNB/CreateArtifacts"
+	NodeArtifactServiceNB_GetArtifacts_FullMethodName        = "/onboardingmgr.NodeArtifactServiceNB/GetArtifacts"
+	NodeArtifactServiceNB_UpdateArtifactsById_FullMethodName = "/onboardingmgr.NodeArtifactServiceNB/UpdateArtifactsById"
+	NodeArtifactServiceNB_DeleteArtifacts_FullMethodName     = "/onboardingmgr.NodeArtifactServiceNB/DeleteArtifacts"
+	NodeArtifactServiceNB_CreateNodes_FullMethodName         = "/onboardingmgr.NodeArtifactServiceNB/CreateNodes"
+	NodeArtifactServiceNB_GetNodes_FullMethodName            = "/onboardingmgr.NodeArtifactServiceNB/GetNodes"
+	NodeArtifactServiceNB_UpdateNodes_FullMethodName         = "/onboardingmgr.NodeArtifactServiceNB/UpdateNodes"
+	NodeArtifactServiceNB_DeleteNodes_FullMethodName         = "/onboardingmgr.NodeArtifactServiceNB/DeleteNodes"
+	NodeArtifactServiceNB_FdoOnboardingTo2Req_FullMethodName = "/onboardingmgr.NodeArtifactServiceNB/FdoOnboardingTo2Req"
 )
 
 // NodeArtifactServiceNBClient is the client API for NodeArtifactServiceNB service.
@@ -373,7 +373,7 @@ func _NodeArtifactServiceNB_FdoOnboardingTo2Req_Handler(srv interface{}, ctx con
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var NodeArtifactServiceNB_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "NodeArtifactServiceNB",
+	ServiceName: "onboardingmgr.NodeArtifactServiceNB",
 	HandlerType: (*NodeArtifactServiceNBServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

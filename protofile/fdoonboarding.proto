@@ -1,6 +1,9 @@
 syntax = "proto3";
 
-option go_package = "github.com/rishiraj-intel/grpc-demo";
+package onboardingmgr;
+
+option go_package = "github.com/intel-innersource/frameworks.edge.one-intel-edge.maestro-infra.secure-os-provision-onboarding-service/tree/main/api/grpc/onboardingmgr;onboardingmgr";
+
 //Artifact & Node Endpoints towards Inventory Manager
 service NodeArtifactServiceNB {
   rpc CreateArtifacts(ArtifactRequest) returns (ArtifactResponse) {}
